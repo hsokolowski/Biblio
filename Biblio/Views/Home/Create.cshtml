@@ -1,0 +1,74 @@
+﻿@model Biblio.Models.Movie
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Dodaj film</h2>
+<div >
+    @using (Html.BeginForm("Create","Home"))
+    {
+        <table>
+            <tr>
+                <td style="text-align:right;"> Tytuł:</td>
+                <td>@Html.EditorFor(m => Model.Name, new { htmlAttributes = new { @class = "form-control", placeholder = "Podaj Tytuł",
+                   style = "width:200px;"} })</td>
+            </tr>
+            <tr>
+                <td style="text-align:right;"> Reżyser:</td>
+                <td>@Html.EditorFor(m => Model.Autor, new { htmlAttributes = new { @class = "form-control", placeholder = "Podaj Reżysera",
+                   style = "width:200px;"
+               } })</td>
+            </tr>
+            <tr>
+                <td style="text-align:right;"> Rok produkcji:</td>
+                <td>@Html.EditorFor(m => Model.Year, new { htmlAttributes = new { @class = "form-control", placeholder = "Podaj Rok",
+                   style = "width:200px;"
+               } })@Html.ValidationMessageFor(model => model.Year, "", new { @class = "text-danger" })</td>
+            </tr>
+            <tr>
+                <td style="text-align:right;">Czas trwania:</td>
+                <td>@Html.EditorFor(m => Model.Time,new { htmlAttributes = new { @class = "form-control", placeholder = "Podaj Czas",
+                   style = "width:200px;"
+               } })@Html.ValidationMessageFor(model => model.Time, "", new { @class = "text-danger" })</td>
+            </tr>           
+            <tr>
+                <td style="text-align:right;">Typ:</td>
+                <td>@Html.EnumDropDownListFor(m => Model.Type,new { @class = "form-control",
+                   style = "width:200px;"})
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:right;">Wiek:</td>
+                <td>@Html.EditorFor(m => Model.Age, new { htmlAttributes = new { @class = "form-control", placeholder = "Podaj Wiek",
+                   style = "width:200px;"
+               } })@Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })</td>
+            </tr>
+            <tr>
+                @Html.HiddenFor(x => x.data, new { @Value = System.DateTime.Now })
+                @if (Session["adminID"] != null)
+                {
+                    @Html.HiddenFor(x => x.kto, new { @class = "form-control", @Value = (Session["adminID"]) })
+                }
+                else
+                {
+                    @Html.HiddenFor(x => x.kto, new { @class = "form-control", @Value = 2 })
+                }
+
+            </tr>
+        </table>
+        <div style="margin-top:10px;">
+            <div>
+                <input type="submit" value="Dodaj Film" class="form-control" style="background-color:#1F2833;color:white;width:200px;" />
+            </div>     
+            <div>
+                <a href="@Url.Action("Index", "Home")">
+                    <div class="form-control" style="background-color:#1F2833;color:white;width:200px;text-align:center;margin-top:5px;">
+                        Powrót do strony głównej
+                    </div>
+                </a>
+            </div>
+        </div>
+        
+    }
+</div>
+

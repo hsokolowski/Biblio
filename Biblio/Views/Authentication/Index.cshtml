@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    if (Session["login"] == null)
+    {
+        
+    }
+}
+<style>
+    #tymc:hover{
+        color:black;
+    }
+    .icon-calendar{
+        color:black;
+    }
+</style>
+
+<h2>authentication contorler</h2>
+
+<a id="tymc" href="@Url.Action("Logout","Home")">Wyloguj</a>

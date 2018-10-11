@@ -1,0 +1,85 @@
+﻿body {
+    padding-top: 0px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+#inner {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*layout*/
+#stopka {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #45A29E;
+    width: 100%;
+    clear: both;
+    position: fixed;
+}
+
+.navigator {
+    height: 10px;
+    /*background-color: slategrey;*/
+    background-color: #C5C6C7;
+}
+
+.body-content {
+}
+
+.link {
+    background-color: grey;
+    width: 60px;
+    height: 30px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.none {
+    text-decoration: none;
+    color: white;
+    padding-top: 5px;
+}
+
+#tab {
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+th, td {
+    width: 100px;
+}
+
+.form-control:hover {
+    transition: all 500ms linear;
+    background-color: #ccffff;
+}
+
+.backtolist:hover {
+    color: black;
+}
+
+hr {
+    height: 10px;
+}

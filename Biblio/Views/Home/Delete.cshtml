@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Usuń film</h2>
+
+<div style="margin-left:auto;margin-right:auto;">
+    @if (Session["IDdoKasacji"] != null)
+    {
+        <div>
+            Czy na pewno chcesz usunać?
+        </div>
+        <div>
+        @*<input type="submit" value="Tak" class="btn btn-default" />*@
+            <a href="@Url.Action("Delete", "Home", new { id= (Session["adminID"])})"><input type="submit" value="Tak" class="btn btn-default" /></a>
+            <a href="@Url.Action("ListaFilmów", "Home")"><input value="Nie" class="btn btn-default" /></a>
+        </div>
+    }
+    else
+    {
+        <a href="@Url.Action("ListaFilmów", "Home")"><input value="Powrót do listy" class="btn btn-default" /></a>
+    }
+</div>

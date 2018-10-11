@@ -1,0 +1,52 @@
+﻿@model Biblio.Models.Movie
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Szczegóły filmu</h2>
+
+<div style="margin-left:auto;margin-right:auto;">
+    <table align="center">
+        <tr>
+            <th style="text-align:right">@Html.DisplayNameFor(m => m.movieID): </th>
+            <td>@Html.DisplayFor(m => Model.movieID) </td>
+        </tr>
+        <tr>
+            <th style="text-align:right">@Html.DisplayNameFor(m => m.Name): </th>
+            <td>@Html.DisplayFor(m => Model.Name)</td>
+        </tr>
+        <tr>
+            <th style="text-align:right">@Html.DisplayNameFor(m => m.Autor): </th>
+            <td>@Html.DisplayFor(m => Model.Autor)</td>
+        </tr>
+        <tr>
+            <th style="text-align:right">@Html.DisplayNameFor(m => m.Year) prod.: </th>
+            <td>@Html.DisplayFor(m => Model.Year)</td>
+        </tr>
+        <tr>
+            <th style="text-align:right">@Html.DisplayNameFor(m => m.Time) trwania: </th>
+            <td>@Html.DisplayFor(m => Model.Time)</td>
+        </tr>
+        <tr>
+            <th style="text-align:right">@Html.DisplayNameFor(m => m.TypeString): </th>
+            <td>@Html.DisplayFor(m => Model.TypeString)</td>
+        </tr>
+        <tr>
+            <th style="text-align:right">@Html.DisplayNameFor(m => m.Age): </th>
+            <td>@Html.DisplayFor(m => Model.Age)</td>
+        </tr>
+        <tr>
+            <th style="text-align:right;width:80px;">Kategoria: </th>
+            <td style="background-color: @Model.agecolor">@Html.DisplayFor(m => Model.agecolor)</td>
+        </tr>
+        <tr>
+            <th style="text-align:right">@Html.DisplayNameFor(m => m.data): </th>
+            <td>@Html.DisplayFor(m => Model.data)</td>
+        </tr>
+        <tr>
+            <th style="text-align:right">Kto dodał: </th>
+            <td>@Html.DisplayFor(m => Model.kto)</td>
+        </tr>
+    </table>
+    @Html.ActionLink("Edytuj", "Edit", new { id = Model.movieID })
+</div>

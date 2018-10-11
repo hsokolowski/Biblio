@@ -1,0 +1,146 @@
+﻿@model IEnumerable<Biblio.Models.Movie>
+@{
+    ViewBag.Title = "ListaFilmów";
+}
+<style>
+    .delete-section {
+        display: inline;
+    }
+</style>
+<script type="text/javascript">
+
+    function hideLabel() {
+        $('.myclass').hide();
+    }
+</script>
+
+<h2>Lista Filmów</h2>
+<div id="toogleswitch">
+
+</div>
+<div id="tab">
+    <table>
+        <tr>
+            <th style="width:30px;">Nr.</th>
+            <th>Tytuł</th>
+            <th style="width:80px;">Rok</th>
+            <th style="width:50px;">Czas</th>
+            <th colspan="4">Akcje</th>
+            
+            @*<th style="width:20px;">Kat.</th>*@
+        </tr>
+        @{
+            int counter = 1;
+            foreach (var u in Model)
+            {
+            <tr>
+                <td style="width:30px;">@counter</td>
+                <td style="width:120px;">@u.Name</td>
+                <td style="width:80px;">(@u.Year)</td>
+                <td style="width:50px;">@u.Time </td>
+                <td style="width:130px;">
+                    <i class="icon-folder-open"></i>@Html.ActionLink("Szczególy", "Details", new { id = u.movieID })
+                </td>
+                @if (Session["login"] != null)
+                {
+                    <td>
+                        <i class="icon-edit"></i>@Html.ActionLink("Edytuj", "Edit", new { id = u.movieID })
+                    </td>
+                    <td>
+                        <i class="icon-trash-empty"></i>@Html.ActionLink("Kasuj", "Delete", new { id = u.movieID }, new { onclick = "return confirm('Czy chcesz na pewno usunać?');" })
+                    </td>
+                    @*<td>
+                        <div class="delete-section">
+                            <i class="icon-trash-empty"></i><a class="delete-link" href="@Url.Action("Delete", new { id = u.movieID })">Kasuj</a>
+                            <div class="btn btn-primary delete-confirm" style="display:none;" data-delete-id="@u.movieID">Potwierdź</div>
+                        </div>
+                    </td>*@
+                    <td style="width:200px;">
+                        <i class="icon-star"></i>@Html.ActionLink("Dodaj do ulubionych", "Favourite2", new { id = u.movieID, whu = (Session["adminID"]) })
+                        <br/>
+                        @if (TempData["Message"] != null && (int)TempData["ID_z_ulub"] == u.movieID)
+                        {
+                            @TempData["Message"]
+                        }
+                    </td>
+                    
+                }
+
+                @*<td style="background-color:@u.agecolor;width:20px;"></td>*@
+            </tr>
+                counter += 1;
+            }
+         }
+    </table>
+</div>
+@if (Session["login"] != null)
+{
+    <a href="@Url.Action("Create", "Home")">
+        <div class="link">
+            <div class="none">Dodaj</div>
+        </div>
+    </a>
+}
+
+
+    <script type="text/javascript">
+    $(function () {
+        $("a.delete-link").click(function () {
+            var deleteLink = $(this);
+            deleteLink.hide();
+            var confirmButton = deleteLink.siblings(".delete-confirm");
+            confirmButton.show();
+
+            var cancelDelete =  function () {
+                removeEvents();
+                showDeleteLink();
+            };
+
+            var deleteItem = function () {
+                removeEvents();
+                confirmButton.hide();
+                $.post(
+                    '@Url.Action("Delete")',
+                    AddAntiForgeryToken({ id: confirmButton.attr('data-delete-id') }))
+                   .done(function () {
+                       var parentRow = deleteLink.parents("tr:first");
+                       parentRow.fadeOut('fast', function () {
+                           parentRow.remove();
+                       });
+                   }).fail(function (data) {
+                       alert("error");
+                   });
+                return false;
+            };
+
+            var removeEvents = function () {
+                confirmButton.off("click", deleteItem);
+                $(document).on("click", cancelDelete);
+                $(document).off("keypress", onKeyPress);
+            };
+
+            var showDeleteLink = function () {
+                confirmButton.hide();
+                deleteLink.show();
+            };
+
+            var onKeyPress = function (e) {
+                //Cancel if escape key pressed
+                if (e.which == 27) {
+                    cancelDelete();
+                }
+            };
+
+            confirmButton.on("click", deleteItem);
+            $(document).on("click", cancelDelete);
+            $(document).on("keypress", onKeyPress);
+
+            return false;
+        });
+
+        AddAntiForgeryToken = function (data) {
+            data.__RequestVerificationToken = $('input[name=__RequestVerificationToken]').val();
+            return data;
+        };
+    });
+    </script>

@@ -1,0 +1,118 @@
+﻿
+<style>
+    #headbar{
+        background-color:#0B0C10;
+        color:white;
+        height:50px;
+        margin-left:auto;
+        margin-right:auto;
+        text-align:center;
+        width:auto;
+
+    }
+    #name {
+        float: left;
+        margin-right: 60px;
+        /*background-color:red;*/
+        width:25%;
+    }
+    .n {
+        float: left;
+        margin-top: 10px;
+        margin-right:20px;
+        font-size:20px;
+    }
+    h2 {
+        margin-top: 8px;
+    }
+    #user {
+        float: right;
+        width: 20%;
+        height:50px;
+    }
+    h5{
+        margin-top: 8px;
+        margin-bottom:0px;
+    }
+    .logo{
+        color: #66FCF1;
+        text-decoration: none;
+    }
+    .logo:after {
+        color: #66FCF1;
+        text-decoration: none;
+    }
+    .logo:hover {
+        color: #66FCF1;
+        text-decoration: none;
+    }
+   #naduser
+   {
+       
+   }
+    #poduser {
+        padding-top:5px;
+        margin-bottom:10px;
+    }
+    #wyg{
+        color: #66FCF1;
+        text-align: center;
+    }
+    #wyg:hover
+    {
+        color:white;
+    }
+    .hfreflinki_po_i_przed_logiem{
+        color:white;
+    }
+    .hfreflinki_po_i_przed_logiem:hover {
+            color: #77EBE0;
+            text-decoration: none;
+    }
+    .hfreflinki_po_i_przed_logiem::after {
+        color: white;
+        text-decoration: none;
+    }
+</style>
+
+<div id="headbar">
+    <div id="name">
+        <h2><a class="logo" href="@Url.Action("Index", "Home")">Biblioteka Filmów <i class="icon-video"></i></a></h2>
+        
+    </div>
+    <div>
+
+        <div class="n"><a class="hfreflinki_po_i_przed_logiem" href="@Url.Action("LastAdded", "Home")"><i class="icon-menu"></i>Ostatnio dodane</a></div>
+        <div class="n"><a class="hfreflinki_po_i_przed_logiem" href="@Url.Action("ListaFilmów", "Home")"><i class="icon-database"></i>Lista</a></div>
+        @if (Session["login"] != null)
+        {
+            <div class="n"><a class="hfreflinki_po_i_przed_logiem" href="@Url.Action("Create", "Home")"><i class="icon-plus-circled"></i>Dodaj film</a></div>
+            <div class="n"><a class="hfreflinki_po_i_przed_logiem" href="@Url.Action("ListaAdminow", "Home")"><i class="icon-user"></i>Admini</a></div>
+            <div class="n"><a class="hfreflinki_po_i_przed_logiem" href="@Url.Action("Favourite", "Home")"><i class="icon-star"></i>Ulubione</a></div>
+        }
+        else
+        {
+            <div class="n"><a class="hfreflinki_po_i_przed_logiem" href="@Url.Action("Login", "Home")"><i class="icon-login"></i>Zaloguj</a></div>
+            <div class="n"><a class="hfreflinki_po_i_przed_logiem" href="@Url.Action("AdminAdd", "Home")"><i class="icon-user-plus"></i>Załóż konto</a></div>
+        }
+        
+    </div>
+    <div id="user">
+        
+            <div id="naduser">
+                <h5>
+                    <i class="icon-user-circle-o"></i>
+                    Użytkownik:  @if (Session["login"] != null)
+                    { @Session["login"].ToString() }
+                </h5>
+            </div>
+            <div id="poduser">
+                @if (Session["login"] != null)
+                {
+                    <i class="icon-logout"></i>
+                    <a id="wyg" href="@Url.Action("Logout","Home")">Wyloguj</a>
+                }
+            </div>
+        
+    </div>
+</div>

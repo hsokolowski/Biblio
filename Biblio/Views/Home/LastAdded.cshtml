@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Biblio.Models.Movie>
+@{
+    ViewBag.Title = "LastAdded";
+}
+
+<style>
+    #ostatnie3 {
+        margin-left: auto;
+        margin-right: auto;
+       
+    }
+
+    table.darkTable {
+        border: 2px solid #000000;
+        background-color: slategray;
+        width: 100%;
+        height: 200px;
+        text-align: center;
+        border-collapse: collapse;
+        color: white;
+    }
+
+        table.darkTable td, table.darkTable th {
+            border: 1px solid #4A4A4A;
+            padding: 3px 2px;
+        }
+
+        table.darkTable tbody td {
+            font-size: 13px;
+            text-align: center;
+        }
+
+        table.darkTable th {
+            text-align: center;
+        }
+
+        table.darkTable tr:nth-child(even) {
+            background: #17AAAA;
+        }
+
+        table.darkTable tr#cienki {
+            height: 30px;
+            background-color: black;
+        }
+</style>
+
+<h2>Strona domowa</h2>
+
+<div id="ostatnie3">
+    <div style="text-align:center;">
+        <h1>Ostatnio dodane</h1>
+    </div>
+    <div>
+        <table class="darkTable">
+            <tr id="cienki">
+                <th>Tytuł</th>
+                <th>Reżyser</th>
+                <th>Rok</th>
+                <th>Kategoria</th>
+            </tr>
+            @foreach (var u in Model.Reverse().Take(3))
+            {
+                <tr>
+                    <th style="width:150px;">@u.Name</th>
+                    <th style="width:150px;">@u.Autor</th>
+                    <th style="width:80px;">@u.Year</th>
+                    <th style="width:150px;">@u.Type</th>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+

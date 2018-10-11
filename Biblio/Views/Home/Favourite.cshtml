@@ -1,0 +1,108 @@
+﻿@model Biblio.ViewModels.GlobalModels
+@{
+    ViewBag.Title = "Favourite";
+}
+<style>
+    #divaj {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    table.darkTable {
+        border: 2px solid #000000;
+        background-color: slategray;
+        width: 100%;
+        
+        text-align: center;
+        border-collapse: collapse;
+        color: white;
+    }
+
+        table.darkTable td, table.darkTable th {
+            border: 1px solid #4A4A4A;
+            padding: 3px 2px;
+        }
+
+        table.darkTable tbody td {
+            font-size: 13px;
+            text-align: center;
+        }
+
+        table.darkTable th {
+            text-align: center;
+        }
+
+        table.darkTable tr:nth-child(even) {
+            background: #17AAAA;
+        }
+
+        table.darkTable tr#cienki {
+            height: 30px;
+            background-color: black;
+        }
+        .linkUlub
+        {
+            color:white;
+        }
+    .linkUlub:hover {
+        color: red;
+    }
+</style>
+
+<h2>Ulubione</h2>
+<div id="divaj">
+    <div style="background-color:black;width:200px;color:white;text-align:center;">
+        ID użytkownika: @if (Session["login"] != null)
+        { @Session["adminID"] }
+    </div>
+    <table class="darkTable">
+        <tr id="cienki">
+            <th>Nr.</th>
+            <th>Tytuł</th>
+            <th>Rok</th>
+            <th>Reżyser</th>
+            <th>Wiek</th>
+            <th>Kategoria</th>
+            <th style="width:25px;"><i class="icon-cancel-circled"></i>Usuń</th>
+        </tr>
+        @{
+            int sesid;
+            int counter = 1;
+            if (Session["adminID"] != null)
+            {
+                sesid = (int)(Session["adminID"]);
+            }
+            else
+            {
+                sesid = 0;
+            }
+            foreach (var u in Model.Ulubs)
+            {
+                if (u.who == sesid)
+                {
+                    foreach (var m in Model.Films)
+                    {
+                        if (u.which == m.movieID)
+                        {
+                            <tr>
+                                <td>@counter</td>
+                                <td>@m.Name</td>
+                                <td>(@m.Year)</td>
+                                <td>@m.Autor</td>
+                                <td>@m.Age</td>
+                                <td>@m.TypeString</td>
+                                <td style="width:25px;background-color:black;">
+                                    <a class="linkUlub" href="@Url.Action("DeleteFav", "Home",new {id = u.favID})"><i class="icon-minus-circled"></i></a>
+                                </td>    
+                            </tr>
+                            counter += 1;
+                        }
+
+                    }
+                }
+
+            }
+        }
+
+    </table>
+</div>
