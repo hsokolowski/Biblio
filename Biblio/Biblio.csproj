@@ -216,7 +216,6 @@
     <Content Include="Content\fontello\css\fontello.css" />
     <Content Include="Content\fontello\font\fontello.svg" />
     <Content Include="Content\Site.css" />
-    <Content Include="Dodany\JavaScript.js" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Images\logo-dotNET.png" />

@@ -25,5 +25,6 @@ namespace Biblio.Models
         [DataType(DataType.Password)]
         [Compare("password")]
         public string confirmedpassword { get; set; }
+
     }
 }

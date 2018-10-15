@@ -7,30 +7,39 @@
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
-    
-    <link href="~/Content/fontello/css/fontello.css" rel="stylesheet" type="text/css"/>
+
+    <link href="~/Content/fontello/css/fontello.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery-1.10.2.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.js")" type="text/javascript"></script>
+    <script src='@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")' type='text/javascript'></script>
     <style>
         body {
             padding-top: 0px;
         }
-        
+
         #stopka {
             text-align: center;
             margin-left: auto;
             margin-right: auto;
             background-color: #45A29E;
             width: 100%;
-            clear:both;
-            position:fixed;
+            clear: both;
+            position: fixed;
         }
-        .navigator{
+
+        .navigator {
             height: 10px;
             /*background-color: slategrey;*/
             background-color: #C5C6C7;
         }
-        .body-content{
-            
+
+        .body-content {
         }
+
         .link {
             background-color: grey;
             width: 60px;
@@ -48,26 +57,30 @@
             color: white;
             padding-top: 5px;
         }
-        #tab{
-            
-            
+
+        #tab {
         }
+
         table {
             margin-left: auto;
             margin-right: auto;
         }
-        th, td{
-            width:100px;
+
+        th, td {
+            width: 100px;
         }
+
         .form-control:hover {
             transition: all 500ms linear;
             background-color: #ccffff;
         }
+
         .backtolist:hover {
             color: black;
         }
-        hr{
-            height:10px;
+
+        hr {
+            height: 10px;
         }
     </style>
 </head>
@@ -81,19 +94,12 @@
             <div class="container body-content">
                 @RenderBody()
                 <hr />
-
             </div>
-            <footer>
+            <footer >
                 <p id="stopka">&copy; @DateTime.Now.Year - PAWWw.NET Projekt Hubert Sokołowski</p>
             </footer>
 
-            <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-            <script src="~/Scripts/bootstrap.min.js"></script>
-            <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
-            <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
-            <script src="@Url.Content("~/Scripts/jquery-1.10.2.js")" type="text/javascript"></script>
-            <script src="@Url.Content("~/Scripts/jquery.validate.js")" type="text/javascript"></script>
-            <script src='@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")' type='text/javascript'></script>
+           
         </div>
     </div>
 </body>
